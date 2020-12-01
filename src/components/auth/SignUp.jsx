@@ -11,7 +11,7 @@ export default function Login() {
 
   const signUp = async () => {
     try {
-      const response = await fetch(`/register`, {
+      const response = await fetch(`https://e-scooter-bk.herokuapp.com//register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
