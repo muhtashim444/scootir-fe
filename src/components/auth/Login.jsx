@@ -11,7 +11,7 @@ export default function Login() {
 
   const getLoginId = async () => {
     try {
-      let response = await fetch(`/login`, {
+      let response = await fetch(`https://sccotir-backend.herokuapp.com/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
