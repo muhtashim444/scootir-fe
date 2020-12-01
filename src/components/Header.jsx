@@ -13,7 +13,7 @@ export default function Header() {
       let myemail = await localStorage.getItem("email");
       console.log("==============", myemail);
 
-      let response = await axios.post("/wallet", {
+      let response = await axios.post("https://sccotir-backend.herokuapp.com/wallet", {
         email: myemail,
       });
 
@@ -28,7 +28,7 @@ export default function Header() {
 
   const buyMore = async () => {
     try {
-      let response = await fetch(`/buymore`, {
+      let response = await fetch(`https://sccotir-backend.herokuapp.com/buymore`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -36,7 +36,7 @@ export default function Header() {
         }),
       });
 
-      // let response = await fetch(`/wallet`, {
+      // let response = await fetch(`https://sccotir-backend.herokuapp.com/wallet`, {
       //   method: "GET",
       // });
       let ress = await response.json();
@@ -46,13 +46,13 @@ export default function Header() {
       setethers(ress.balance);
       settokens(ress.tokens);
       setrewardedtokens(ress.rewardedBalance);
-      // let response = await axios.get("/wallet", {
+      // let response = await axios.get("https://sccotir-backend.herokuapp.com/wallet", {
       //   email: email,
       // });
       console.log("RESPONSE==========", await response);
 
       // axios
-      //   .post(`http://localhost:3001/login`, { email: email, password: pwd })
+      //   .post(`http://localhost:3001https://sccotir-backend.herokuapp.com/login`, { email: email, password: pwd })
       //   .then((res) => {
       //     console.log(res);
       //     console.log(res.data);
