@@ -6,7 +6,7 @@ export default function ParkingZones() {
 
   const rentScooter = async () => {
     try {
-      let response = await fetch(`/rent`, {
+      let response = await fetch(`https://sccotir-backend.herokuapp.com/rent`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
