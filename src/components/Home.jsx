@@ -585,7 +585,7 @@ export default function Home() {
           </div>
           {/* <!-- End F.A.Q Item--> */}
 
-          <div
+          {/* <div
             className="row faq-item d-flex align-items-stretch"
             data-aos="fade-up"
             data-aos-delay="500"
@@ -605,7 +605,7 @@ export default function Home() {
                 bibendum est. Purus gravida quis blandit turpis cursus in
               </p>
             </div>
-          </div>
+          </div> */}
           {/* <!-- End F.A.Q Item--> */}
         </div>
       </section>

@@ -333,11 +333,11 @@ export default function ParkingZones() {
         </div>
       </div>
       <ReactJsAlert
-        type="success" // success, warning, error, info
-        title="Rented Successfully." // title you want to display
-        status={open} // true or false
-        color="#1d36ad"
-        Close={() => setOpen(false)} // callback method for hide
+        type="info" // success, warning, error, info
+        title="Rented Successfully."
+        status={open}
+        quote="You are renting this e-scootir"
+        Close={() => setOpen(false)}
       />
     </section>
   );

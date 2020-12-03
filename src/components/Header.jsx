@@ -1,21 +1,28 @@
 import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+import ReactJsAlert from "reactjs-alert";
 
 export default function Header() {
   const [email, setemail] = React.useState("");
   const [ethers, setethers] = React.useState("");
   const [tokens, settokens] = React.useState("");
   const [rewardedtokens, setrewardedtokens] = React.useState("");
+  const [open, setOpen] = React.useState(false);
 
   const getWalletDetails = async () => {
     try {
       let myemail = await localStorage.getItem("email");
+      setemail(myemail);
+
       console.log("==============", myemail);
 
-      let response = await axios.post("https://sccotir-backend.herokuapp.com/wallet", {
-        email: myemail,
-      });
+      let response = await axios.post(
+        "https://sccotir-backend.herokuapp.com/wallet",
+        {
+          email: localStorage.getItem("email"),
+        }
+      );
 
       setethers(response.data.balance);
       settokens(response.data.tokens);
@@ -28,13 +35,18 @@ export default function Header() {
 
   const buyMore = async () => {
     try {
-      let response = await fetch(`https://sccotir-backend.herokuapp.com/buymore`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: email,
-        }),
-      });
+      let response = await fetch(
+        `https://sccotir-backend.herokuapp.com/buymore`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: localStorage.getItem("email"),
+          }),
+        }
+      );
+
+      // let email = localStorage.getItem("email");
 
       // let response = await fetch(`https://sccotir-backend.herokuapp.com/wallet`, {
       //   method: "GET",
@@ -66,10 +78,8 @@ export default function Header() {
 
   useEffect(() => {
     let email = localStorage.getItem("email");
-
     setemail(email);
-    return () => {};
-  }, []);
+  });
 
   return (
     <div>
@@ -153,6 +163,18 @@ export default function Header() {
           >
             Wallet
           </a>
+          <a
+            href="#"
+            type="button"
+            className="get-started-btn"
+            className="get-started-btn"
+            onClick={() => {
+              localStorage.clear();
+              setOpen(true);
+            }}
+          >
+            Logout
+          </a>
           {/* <a
             href="#"
             type="button"
@@ -180,10 +202,7 @@ export default function Header() {
             Login
           </NavLink> */}
 
-          <p style={{ marginLeft: "2%" }}>
-            {email}
-            {/* <a href="parkingzones.html">Parking Zones</a> */}
-          </p>
+          <p style={{ marginLeft: "2%" }}>{email}</p>
         </div>
       </div>
       <div className="modal" id="myModal">
@@ -278,6 +297,13 @@ export default function Header() {
           </div>
         </div>
       </div>
+      <ReactJsAlert
+        type="warning" // success, warning, error, info
+        title="Logged out."
+        status={open}
+        quote="Please login to use our services"
+        Close={() => setOpen(false)}
+      />
     </div>
   );
 }

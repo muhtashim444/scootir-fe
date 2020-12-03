@@ -6,13 +6,16 @@ export default function ServicesPage() {
 
   const parkScootir = async () => {
     try {
-      let response = await fetch(`https://sccotir-backend.herokuapp.com/reward`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: localStorage.getItem("email"),
-        }),
-      });
+      let response = await fetch(
+        `https://sccotir-backend.herokuapp.com/reward`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: localStorage.getItem("email"),
+          }),
+        }
+      );
       // if (response.status == 200) {
       //   console.log("RECEIVED EMAIL");
       //   localStorage.setItem("email", email);
@@ -204,11 +207,11 @@ export default function ServicesPage() {
         </div>
       </div>
       <ReactJsAlert
-        type="success" // success, warning, error, info
-        title="Parked Successfully." // title you want to display
-        status={open} // true or false
-        color="#1d36ad"
-        Close={() => setOpen(false)} // callback method for hide
+        type="warning" // success, warning, error, info
+        title="Parked Successfully."
+        status={open}
+        quote="You are parking this e-scootir"
+        Close={() => setOpen(false)}
       />
     </section>
   );
