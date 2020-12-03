@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import axios from "axios";
 import ReactJsAlert from "reactjs-alert";
 
@@ -9,6 +9,7 @@ export default function Header() {
   const [tokens, settokens] = React.useState("");
   const [rewardedtokens, setrewardedtokens] = React.useState("");
   const [open, setOpen] = React.useState(false);
+  const [date, setDate] = React.useState("");
 
   const getWalletDetails = async () => {
     try {
@@ -23,6 +24,19 @@ export default function Header() {
           email: localStorage.getItem("email"),
         }
       );
+
+      let date = new Date().toDateString();
+      setDate(date);
+      console.log("DATE==========================", date);
+
+      // let rides = await axios.post(
+      //   "https://sccotir-backend.herokuapp.com/wallet",
+      //   {
+      //     email: localStorage.getItem("email"),
+      //   }
+      // );
+
+      // console.log("RIDES====",rides)
 
       setethers(response.data.balance);
       settokens(response.data.tokens);
@@ -88,13 +102,13 @@ export default function Header() {
           {/* 
             <!-- <h1 className="logo mr-auto"><a href="index.html">Scootir</a></h1> -->
             <!-- Uncomment below if you prefer to use an image logo --> */}
-          <a href="index.html" className="logo mr-auto">
+          <Link to="/" className="logo mr-auto">
             <img
               src="assets/img/OneDrive-2020-10-31/fullLogo.png"
               alt=""
               className="img-fluid"
             />
-          </a>
+          </Link>
 
           <nav className="nav-menu d-none d-lg-block">
             <ul>
@@ -265,11 +279,11 @@ export default function Header() {
                   </thead>
                   <tbody>
                     <tr>
-                      <td>11/7/2020</td>
-                      <td>Side walk</td>
-                      <td>No</td>
+                      <td>{date}</td>
+                      <td>E-Scootir Parking</td>
+                      <td>Yes</td>
                     </tr>
-                    <tr>
+                    {/* <tr>
                       <td>11/7/2020</td>
                       <td>Zone 2</td>
                       <td>Yes</td>
@@ -278,7 +292,7 @@ export default function Header() {
                       <td>11/7/2020</td>
                       <td>Side Walk</td>
                       <td>No</td>
-                    </tr>
+                    </tr> */}
                   </tbody>
                 </table>
               </div>
