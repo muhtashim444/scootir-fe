@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -18,10 +19,10 @@ export default function Footer() {
                   <br />
                   <strong>Phone:</strong> +1 5589 55488 55
                   <br />
-                  <strong>Email:</strong> info@example.com
+                  <strong>Email:</strong> scootir@web.de
                   <br />
                 </p>
-                <div className="social-links mt-3">
+                {/* <div className="social-links mt-3">
                   <a href="#" className="twitter">
                     <i className="bx bxl-twitter"></i>
                   </a>
@@ -37,7 +38,7 @@ export default function Footer() {
                   <a href="#" className="linkedin">
                     <i className="bx bxl-linkedin"></i>
                   </a>
-                </div>
+                </div> */}
               </div>
             </div>
 
@@ -45,23 +46,24 @@ export default function Footer() {
               <h4>Useful Links</h4>
               <ul>
                 <li>
-                  <i className="bx bx-chevron-right"></i> <a href="#">Home</a>
+                  <i className="bx bx-chevron-right"></i>{" "}
+                  <Link to="/">Home</Link>
                 </li>
                 <li>
                   <i className="bx bx-chevron-right"></i>{" "}
-                  <a href="#">About us</a>
+                  <Link to="/">About us</Link>
                 </li>
                 <li>
                   <i className="bx bx-chevron-right"></i>{" "}
-                  <a href="#">Services</a>
+                  <Link to="/">Services</Link>
                 </li>
                 <li>
                   <i className="bx bx-chevron-right"></i>{" "}
-                  <a href="#">Rent E-Scooter</a>
+                  <Link to="/services">Rent E-Scooter</Link>
                 </li>
                 <li>
                   <i className="bx bx-chevron-right"></i>{" "}
-                  <a href="#">E-Scooters</a>
+                  <Link to="/services">E-Scooters</Link>
                 </li>
               </ul>
             </div>
@@ -71,7 +73,7 @@ export default function Footer() {
               <ul>
                 <li>
                   <i className="bx bx-chevron-right"></i>{" "}
-                  <a href="#">E-Scooter</a>
+                  <Link to="/services">E-Scooter</Link>
                 </li>
                 {/* <li><i className="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
                                     <li><i className="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
@@ -80,7 +82,7 @@ export default function Footer() {
               </ul>
             </div>
 
-            <div className="col-lg-4 col-md-6 footer-newsletter">
+            {/* <div className="col-lg-4 col-md-6 footer-newsletter">
               <h4>Our Newsletter</h4>
               <p>
                 Tamen quem nulla quae legam multos aute sint culpa legam noster
@@ -90,7 +92,7 @@ export default function Footer() {
                 <input type="email" name="email" />
                 <input type="submit" value="Subscribe" />
               </form>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

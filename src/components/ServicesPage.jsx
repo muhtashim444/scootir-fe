@@ -3,45 +3,52 @@ import ReactJsAlert from "reactjs-alert";
 
 export default function ServicesPage() {
   const [open, setOpen] = React.useState(false);
+  const [open2, setOpen2] = React.useState(false);
+  const [open3, setOpen3] = React.useState(false);
 
   const parkScootir = async () => {
     try {
-      let response = await fetch(
-        `https://sccotir-backend.herokuapp.com/reward`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            email: localStorage.getItem("email"),
-          }),
-        }
-      );
-      // if (response.status == 200) {
-      //   console.log("RECEIVED EMAIL");
-      //   localStorage.setItem("email", email);
-      //   console.log("email stored");
-      //   setloggedIn(true);
-      // }
+      let myemail = await localStorage.getItem("email");
+      if (!myemail) {
+        setOpen2(true);
+      } else {
+        let response = await fetch(
+          `https://sccotir-backend.herokuapp.com/reward`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              email: localStorage.getItem("email"),
+            }),
+          }
+        );
+        // if (response.status == 200) {
+        //   console.log("RECEIVED EMAIL");
+        //   localStorage.setItem("email", email);
+        //   console.log("email stored");
+        //   setloggedIn(true);
+        // }
 
-      // let response = await fetch(`/wallet`, {
-      //   method: "GET",
-      // });
+        // let response = await fetch(`/wallet`, {
+        //   method: "GET",
+        // });
 
-      // let response = await axios.get("/wallet", {
-      //   email: email,
-      // });
+        // let response = await axios.get("/wallet", {
+        //   email: email,
+        // });
 
-      setOpen(true);
-      console.log("RESPONSE==========", await response.json());
+        setOpen(true);
+        console.log("RESPONSE==========", await response.json());
 
-      // axios
-      //   .post(`http://localhost:3001/login`, { email: email, password: pwd })
-      //   .then((res) => {
-      //     console.log(res);
-      //     console.log(res.data);
-      //   });
+        // axios
+        //   .post(`http://localhost:3001/login`, { email: email, password: pwd })
+        //   .then((res) => {
+        //     console.log(res);
+        //     console.log(res.data);
+        //   });
 
-      // console.log("RESPONSE=====", response);
+        // console.log("RESPONSE=====", response);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -74,7 +81,7 @@ export default function ServicesPage() {
                   alt="A generic square placeholder image with rounded corners in a figure."
                 />
                 <figcaption class="figure-caption text-center">
-                  A caption for the above image.
+                  Zone 1
                 </figcaption>
               </figure>
             </a>
@@ -99,7 +106,7 @@ export default function ServicesPage() {
                   alt="A generic square placeholder image with rounded corners in a figure."
                 />
                 <figcaption class="figure-caption text-center">
-                  A caption for the above image.
+                  Zone 2
                 </figcaption>
               </figure>
             </a>
@@ -124,7 +131,7 @@ export default function ServicesPage() {
                   alt="A generic square placeholder image with rounded corners in a figure."
                 />
                 <figcaption class="figure-caption text-center">
-                  A caption for the above image.
+                  Zone 3
                 </figcaption>
               </figure>
             </a>
@@ -149,7 +156,7 @@ export default function ServicesPage() {
                   alt="A generic square placeholder image with rounded corners in a figure."
                 />
                 <figcaption class="figure-caption text-center">
-                  A caption for the above image.
+                  Zone 4
                 </figcaption>
               </figure>
             </a>
@@ -159,7 +166,7 @@ export default function ServicesPage() {
             class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4"
             data-aos="zoom-in"
             data-aos-delay="200"
-            onClick={parkScootir}
+            onClick={() => setOpen3(true)}
           >
             <a
               href="#"
@@ -174,7 +181,7 @@ export default function ServicesPage() {
                   alt="A generic square placeholder image with rounded corners in a figure."
                 />
                 <figcaption class="figure-caption text-center">
-                  A caption for the above image.
+                  Zone 5
                 </figcaption>
               </figure>
             </a>
@@ -184,7 +191,7 @@ export default function ServicesPage() {
             class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4"
             data-aos="zoom-in"
             data-aos-delay="300"
-            onClick={parkScootir}
+            onClick={() => setOpen3(true)}
           >
             <a
               href="#"
@@ -199,7 +206,7 @@ export default function ServicesPage() {
                   alt="A generic square placeholder image with rounded corners in a figure."
                 />
                 <figcaption class="figure-caption text-center">
-                  A caption for the above image.
+                  Zone 6
                 </figcaption>
               </figure>
             </a>
@@ -212,6 +219,21 @@ export default function ServicesPage() {
         status={open}
         quote="You are parking this e-scootir"
         Close={() => setOpen(false)}
+      />
+      <ReactJsAlert
+        type="error" // success, warning, error, info
+        title="Please Login First."
+        status={open2}
+        quote="You can not park before login"
+        Close={() => setOpen2(false)}
+      />
+
+      <ReactJsAlert
+        type="error" // success, warning, error, info
+        title="Can Not Park."
+        status={open3}
+        quote="Please park in the parking zone"
+        Close={() => setOpen3(false)}
       />
     </section>
   );

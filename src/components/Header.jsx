@@ -93,7 +93,7 @@ export default function Header() {
   useEffect(() => {
     let email = localStorage.getItem("email");
     setemail(email);
-  });
+  }, [localStorage.getItem("email")]);
 
   return (
     <div>
@@ -177,8 +177,8 @@ export default function Header() {
           >
             Wallet
           </a>
-          <a
-            href="#"
+          <Link
+            to="/"
             type="button"
             className="get-started-btn"
             className="get-started-btn"
@@ -188,7 +188,7 @@ export default function Header() {
             }}
           >
             Logout
-          </a>
+          </Link>
           {/* <a
             href="#"
             type="button"

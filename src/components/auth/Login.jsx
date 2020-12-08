@@ -11,14 +11,17 @@ export default function Login() {
 
   const getLoginId = async () => {
     try {
-      let response = await fetch(`https://sccotir-backend.herokuapp.com/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: email,
-          password: pwd,
-        }),
-      });
+      let response = await fetch(
+        `https://sccotir-backend.herokuapp.com/login`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: email,
+            password: pwd,
+          }),
+        }
+      );
       if (response.status == 200) {
         console.log("RECEIVED EMAIL");
         localStorage.setItem("email", email);
@@ -91,6 +94,8 @@ export default function Login() {
             type="submit"
             className="fadeIn fourth"
             value="Log In"
+            data-toggle="modal"
+            data-target="#myModal"
             onClick={getLoginId}
           ></input>
         </div>

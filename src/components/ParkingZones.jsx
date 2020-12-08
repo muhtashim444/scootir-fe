@@ -3,22 +3,31 @@ import ReactJsAlert from "reactjs-alert";
 
 export default function ParkingZones() {
   const [open, setOpen] = React.useState(false);
+  const [open2, setOpen2] = React.useState(false);
 
   const rentScooter = async () => {
     try {
-      let response = await fetch(`https://sccotir-backend.herokuapp.com/rent`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: localStorage.getItem("email"),
-        }),
-      });
-      setOpen(true);
+      let myemail = await localStorage.getItem("email");
+      if (!myemail) {
+        setOpen2(true);
+      } else {
+        let response = await fetch(
+          `https://sccotir-backend.herokuapp.com/rent`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              email: localStorage.getItem("email"),
+            }),
+          }
+        );
+        setOpen(true);
 
-      // setethers(response.data.balance);
-      // settokens(response.data.tokens);
-      // setrewardedtokens(response.data.rewardedBalance);
-      console.log("RESPONSE==========", response);
+        // setethers(response.data.balance);
+        // settokens(response.data.tokens);
+        // setrewardedtokens(response.data.rewardedBalance);
+        console.log("RESPONSE==========", response);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -49,9 +58,7 @@ export default function ParkingZones() {
                 class="figure-img img-fluid rounded bx-tada-hover"
                 alt="A generic square placeholder image with rounded corners in a figure."
               />
-              <div class="figure-caption text-center">
-                A caption for the above image.
-              </div>
+              <div class="figure-caption text-center">E-Scootir-1</div>
             </figure>
           </a>
         </div>
@@ -74,9 +81,7 @@ export default function ParkingZones() {
                 class="figure-img img-fluid rounded bx-tada-hover"
                 alt="A generic square placeholder image with rounded corners in a figure."
               />
-              <div class="figure-caption text-center">
-                A caption for the above image.
-              </div>
+              <div class="figure-caption text-center">E-Scootir-2</div>
             </figure>
           </a>
         </div>
@@ -99,9 +104,7 @@ export default function ParkingZones() {
                 class="figure-img img-fluid rounded bx-tada-hover"
                 alt="A generic square placeholder image with rounded corners in a figure."
               />
-              <div class="figure-caption text-center">
-                A caption for the above image.
-              </div>
+              <div class="figure-caption text-center">E-Scootir-3</div>
             </figure>
           </a>
         </div>
@@ -124,9 +127,7 @@ export default function ParkingZones() {
                 class="figure-img img-fluid rounded bx-tada-hover"
                 alt="A generic square placeholder image with rounded corners in a figure."
               />
-              <div class="figure-caption text-center">
-                A caption for the above image.
-              </div>
+              <div class="figure-caption text-center">E-Scootir-4</div>
             </figure>
           </a>
         </div>
@@ -149,9 +150,7 @@ export default function ParkingZones() {
                 class="figure-img img-fluid rounded bx-tada-hover"
                 alt="A generic square placeholder image with rounded corners in a figure."
               />
-              <div class="figure-caption text-center">
-                A caption for the above image.
-              </div>
+              <div class="figure-caption text-center">E-Scootir-5</div>
             </figure>
           </a>
         </div>
@@ -174,9 +173,7 @@ export default function ParkingZones() {
                 class="figure-img img-fluid rounded bx-tada-hover"
                 alt="A generic square placeholder image with rounded corners in a figure."
               />
-              <div class="figure-caption text-center">
-                A caption for the above image.
-              </div>
+              <div class="figure-caption text-center">E-Scootir-6</div>
             </figure>
           </a>
         </div>
@@ -200,9 +197,7 @@ export default function ParkingZones() {
                 class="figure-img img-fluid rounded bx-tada-hover"
                 alt="A generic square placeholder image with rounded corners in a figure."
               />
-              <div class="figure-caption text-center">
-                A caption for the above image.
-              </div>
+              <div class="figure-caption text-center">E-Scootir-7</div>
             </figure>
           </a>
         </div>
@@ -225,9 +220,7 @@ export default function ParkingZones() {
                 class="figure-img img-fluid rounded bx-tada-hover"
                 alt="A generic square placeholder image with rounded corners in a figure."
               />
-              <div class="figure-caption text-center">
-                A caption for the above image.
-              </div>
+              <div class="figure-caption text-center">E-Scootir-8</div>
             </figure>
           </a>
         </div>
@@ -250,9 +243,7 @@ export default function ParkingZones() {
                 class="figure-img img-fluid rounded bx-tada-hover"
                 alt="A generic square placeholder image with rounded corners in a figure."
               />
-              <div class="figure-caption text-center">
-                A caption for the above image.
-              </div>
+              <div class="figure-caption text-center">E-Scootir-9</div>
             </figure>
           </a>
         </div>
@@ -275,9 +266,7 @@ export default function ParkingZones() {
                 class="figure-img img-fluid rounded bx-tada-hover"
                 alt="A generic square placeholder image with rounded corners in a figure."
               />
-              <div class="figure-caption text-center">
-                A caption for the above image.
-              </div>
+              <div class="figure-caption text-center">E-Scootir-10</div>
             </figure>
           </a>
         </div>
@@ -300,9 +289,7 @@ export default function ParkingZones() {
                 class="figure-img img-fluid rounded bx-tada-hover"
                 alt="A generic square placeholder image with rounded corners in a figure."
               />
-              <div class="figure-caption text-center">
-                A caption for the above image.
-              </div>
+              <div class="figure-caption text-center">E-Scootir-11</div>
             </figure>
           </a>
         </div>
@@ -325,9 +312,7 @@ export default function ParkingZones() {
                 class="figure-img img-fluid rounded bx-tada-hover"
                 alt="A generic square placeholder image with rounded corners in a figure."
               />
-              <div class="figure-caption text-center">
-                A caption for the above image.
-              </div>
+              <div class="figure-caption text-center">E-Scootir-12</div>
             </figure>
           </a>
         </div>
@@ -338,6 +323,13 @@ export default function ParkingZones() {
         status={open}
         quote="You are renting this e-scootir"
         Close={() => setOpen(false)}
+      />
+      <ReactJsAlert
+        type="error" // success, warning, error, info
+        title="Please Login First."
+        status={open2}
+        quote="You can not rent this e-scootir"
+        Close={() => setOpen2(false)}
       />
     </section>
   );
