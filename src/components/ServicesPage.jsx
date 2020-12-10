@@ -5,6 +5,7 @@ export default function ServicesPage() {
   const [open, setOpen] = React.useState(false);
   const [open2, setOpen2] = React.useState(false);
   const [open3, setOpen3] = React.useState(false);
+  const [open4, setOpen4] = React.useState(false);
 
   const parkScootir = async () => {
     try {
@@ -36,8 +37,12 @@ export default function ServicesPage() {
         // let response = await axios.get("/wallet", {
         //   email: email,
         // });
+        let rssss = await response.json();
+        if (rssss.status == 200) {
+          setOpen(true);
+        }
+        setOpen4(true);
 
-        setOpen(true);
         console.log("RESPONSE==========", await response.json());
 
         // axios
@@ -234,6 +239,14 @@ export default function ServicesPage() {
         status={open3}
         quote="Please park in the parking zone"
         Close={() => setOpen3(false)}
+      />
+
+      <ReactJsAlert
+        type="error" // success, warning, error, info
+        title="Can Not Park."
+        status={open3}
+        quote="You are not renting any scootir"
+        Close={() => setOpen4(false)}
       />
     </section>
   );

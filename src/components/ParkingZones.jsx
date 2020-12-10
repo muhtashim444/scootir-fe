@@ -21,8 +21,10 @@ export default function ParkingZones() {
             }),
           }
         );
-        setOpen(true);
-
+        let resss = await response.json();
+        if (resss.status === 200) {
+          setOpen(true);
+        }
         // setethers(response.data.balance);
         // settokens(response.data.tokens);
         // setrewardedtokens(response.data.rewardedBalance);

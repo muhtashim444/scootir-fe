@@ -9,7 +9,13 @@ export default function Header() {
   const [tokens, settokens] = React.useState("");
   const [rewardedtokens, setrewardedtokens] = React.useState("");
   const [open, setOpen] = React.useState(false);
-  const [date, setDate] = React.useState("");
+  const [date1, setDate1] = React.useState("");
+  const [date2, setDate2] = React.useState("");
+  const [date3, setDate3] = React.useState("");
+  const [parking1, setParking1] = React.useState("");
+  const [parking2, setParking2] = React.useState("");
+  const [parking3, setParking3] = React.useState("");
+  const [statusre, setStatusre] = React.useState("");
 
   const getWalletDetails = async () => {
     try {
@@ -25,9 +31,21 @@ export default function Header() {
         }
       );
 
-      let date = new Date().toDateString();
-      setDate(date);
-      console.log("DATE==========================", date);
+      //1
+      // setDate1(response.data.activity[0].time);
+      // setParking1(response.data.activity[0].parkingZone);
+
+      // //2
+      // setDate2(response.data.activity[1].time);
+      // setParking2(response.data.activity[1].parkingZone);
+
+      // //3
+      // setDate3(response.data.activity[2].time);
+      // setParking3(response.data.activity[2].parkingZone);
+
+      // let date = new Date().toDateString();
+      // setDate1(date);
+      // console.log("DATE==========================", date);
 
       // let rides = await axios.post(
       //   "https://sccotir-backend.herokuapp.com/wallet",
@@ -42,6 +60,9 @@ export default function Header() {
       settokens(response.data.tokens);
       setrewardedtokens(response.data.rewardedBalance);
       console.log("RESPONSE==========", response);
+      if (response) {
+        setStatusre("Yes");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -279,10 +300,21 @@ export default function Header() {
                   </thead>
                   <tbody>
                     <tr>
-                      <td>{date}</td>
-                      <td>E-Scootir Parking</td>
-                      <td>Yes</td>
+                      <td>{date1}</td>
+                      <td>{parking1}</td>
+                      <td>{statusre}</td>
                     </tr>
+                    <tr>
+                      <td>{date2}</td>
+                      <td>{parking2}</td>
+                      <td>{statusre}</td>
+                    </tr>
+                    <tr>
+                      <td>{date3}</td>
+                      <td>{parking3}</td>
+                      <td>{statusre}</td>
+                    </tr>
+
                     {/* <tr>
                       <td>11/7/2020</td>
                       <td>Zone 2</td>
