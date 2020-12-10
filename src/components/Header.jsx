@@ -32,16 +32,16 @@ export default function Header() {
       );
 
       //1
-      // setDate1(response.data.activity[0].time);
-      // setParking1(response.data.activity[0].parkingZone);
+      setDate1(response.data.activity[0].time);
+      setParking1(response.data.activity[0].parkingZone);
 
-      // //2
-      // setDate2(response.data.activity[1].time);
-      // setParking2(response.data.activity[1].parkingZone);
+      //2
+      setDate2(response.data.activity[1].time);
+      setParking2(response.data.activity[1].parkingZone);
 
-      // //3
-      // setDate3(response.data.activity[2].time);
-      // setParking3(response.data.activity[2].parkingZone);
+      //3
+      setDate3(response.data.activity[2].time);
+      setParking3(response.data.activity[2].parkingZone);
 
       // let date = new Date().toDateString();
       // setDate1(date);
