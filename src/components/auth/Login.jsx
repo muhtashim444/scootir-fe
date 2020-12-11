@@ -94,8 +94,8 @@ export default function Login() {
             type="submit"
             className="fadeIn fourth"
             value="Log In"
-            data-toggle="modal"
-            data-target="#myModal"
+            // data-toggle="modal"
+            // data-target="#myModal"
             onClick={getLoginId}
           ></input>
         </div>

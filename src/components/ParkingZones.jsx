@@ -22,13 +22,14 @@ export default function ParkingZones() {
           }
         );
         let resss = await response.json();
-        if (resss.status === 200) {
+        console.log("==================================", resss);
+        if (response.status == 200) {
           setOpen(true);
         }
         // setethers(response.data.balance);
         // settokens(response.data.tokens);
         // setrewardedtokens(response.data.rewardedBalance);
-        console.log("RESPONSE==========", response);
+        // console.log("RESPONSE==========", response);
       }
     } catch (error) {
       console.log(error);

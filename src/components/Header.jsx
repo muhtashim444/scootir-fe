@@ -30,18 +30,19 @@ export default function Header() {
           email: localStorage.getItem("email"),
         }
       );
+      if (response.data.activity.length != 0) {
+        //1
+        setDate1(response.data.activity[0].time);
+        setParking1(response.data.activity[0].parkingZone);
 
-      //1
-      setDate1(response.data.activity[0].time);
-      setParking1(response.data.activity[0].parkingZone);
+        //2
+        setDate2(response.data.activity[1].time);
+        setParking2(response.data.activity[1].parkingZone);
 
-      //2
-      setDate2(response.data.activity[1].time);
-      setParking2(response.data.activity[1].parkingZone);
-
-      //3
-      setDate3(response.data.activity[2].time);
-      setParking3(response.data.activity[2].parkingZone);
+        //3
+        setDate3(response.data.activity[2].time);
+        setParking3(response.data.activity[2].parkingZone);
+      }
 
       // let date = new Date().toDateString();
       // setDate1(date);
@@ -96,7 +97,7 @@ export default function Header() {
       // let response = await axios.get("https://sccotir-backend.herokuapp.com/wallet", {
       //   email: email,
       // });
-      console.log("RESPONSE==========", await response);
+      console.log("RESPONSE==========", await response.json());
 
       // axios
       //   .post(`http://localhost:3001https://sccotir-backend.herokuapp.com/login`, { email: email, password: pwd })
