@@ -12,7 +12,7 @@ export default function Login() {
   const getLoginId = async () => {
     try {
       let response = await fetch(
-        `https://sccotir-backend.herokuapp.com/login`,
+        `https://e-scootir-backend.herokuapp.com/login`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

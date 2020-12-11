@@ -12,7 +12,7 @@ export default function ParkingZones() {
         setOpen2(true);
       } else {
         let response = await fetch(
-          `https://sccotir-backend.herokuapp.com/rent`,
+          `https://e-scootir-backend.herokuapp.com/rent`,
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },

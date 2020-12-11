@@ -12,7 +12,7 @@ export default function Login() {
   const signUp = async () => {
     try {
       const response = await fetch(
-        `https://sccotir-backend.herokuapp.com/register`,
+        `https://e-scootir-backend.herokuapp.com/register`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

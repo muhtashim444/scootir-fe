@@ -14,7 +14,7 @@ export default function ServicesPage() {
         setOpen2(true);
       } else {
         let response = await fetch(
-          `https://sccotir-backend.herokuapp.com/reward`,
+          `https://e-scootir-backend.herokuapp.com/reward`,
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },

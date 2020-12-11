@@ -25,7 +25,7 @@ export default function Header() {
       console.log("==============", myemail);
 
       let response = await axios.post(
-        "https://sccotir-backend.herokuapp.com/wallet",
+        "https://e-scootir-backend.herokuapp.com/wallet",
         {
           email: localStorage.getItem("email"),
         }
@@ -72,7 +72,7 @@ export default function Header() {
   const buyMore = async () => {
     try {
       let response = await fetch(
-        `https://sccotir-backend.herokuapp.com/buymore`,
+        `https://e-scootir-backend.herokuapp.com/buymore`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
