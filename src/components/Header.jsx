@@ -32,6 +32,12 @@ export default function Header() {
           email: localStorage.getItem("email"),
         }
       );
+
+      setethers(response.data.balance);
+      settokens(response.data.tokens);
+      setrewardedtokens(response.data.rewardedBalance);
+      console.log("RESPONSE==========", response);
+
       if (response.data.activity.length != 0) {
         //1
 
@@ -68,11 +74,6 @@ export default function Header() {
       // );
 
       // console.log("RIDES====",rides)
-
-      setethers(response.data.balance);
-      settokens(response.data.tokens);
-      setrewardedtokens(response.data.rewardedBalance);
-      console.log("RESPONSE==========", response);
     } catch (error) {
       console.log(error);
     }
