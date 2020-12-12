@@ -12,6 +12,7 @@ export default function ServicesPage() {
       let myemail = await localStorage.getItem("email");
       if (!myemail) {
         setOpen2(true);
+        return;
       } else {
         let response = await fetch(
           `https://e-scootir-backend.herokuapp.com/reward`,
@@ -37,9 +38,10 @@ export default function ServicesPage() {
         // let response = await axios.get("/wallet", {
         //   email: email,
         // });
-        let rssss = await response.json();
-        if (rssss.status == 200) {
+        // let rssss = await response.json();
+        if (response.status == 200) {
           setOpen(true);
+          return;
         }
         setOpen4(true);
 
@@ -244,7 +246,7 @@ export default function ServicesPage() {
       <ReactJsAlert
         type="error" // success, warning, error, info
         title="Can Not Park."
-        status={open3}
+        status={open4}
         quote="You are not renting any scootir"
         Close={() => setOpen4(false)}
       />

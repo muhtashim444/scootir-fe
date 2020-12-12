@@ -10,6 +10,7 @@ export default function ParkingZones() {
       let myemail = await localStorage.getItem("email");
       if (!myemail) {
         setOpen2(true);
+        return;
       } else {
         let response = await fetch(
           `https://e-scootir-backend.herokuapp.com/rent`,
