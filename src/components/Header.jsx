@@ -15,7 +15,9 @@ export default function Header() {
   const [parking1, setParking1] = React.useState("");
   const [parking2, setParking2] = React.useState("");
   const [parking3, setParking3] = React.useState("");
-  const [statusre, setStatusre] = React.useState("");
+  const [statusre1, setStatusre1] = React.useState("");
+  const [statusre2, setStatusre2] = React.useState("");
+  const [statusre3, setStatusre3] = React.useState("");
 
   const getWalletDetails = async () => {
     try {
@@ -32,16 +34,26 @@ export default function Header() {
       );
       if (response.data.activity.length != 0) {
         //1
+
         setDate1(response.data.activity[0].time);
         setParking1(response.data.activity[0].parkingZone);
+        if (response.data.activity[0].parkingZone) {
+          setStatusre1("Yes");
+        }
 
         //2
         setDate2(response.data.activity[1].time);
         setParking2(response.data.activity[1].parkingZone);
+        if (response.data.activity[1].parkingZone) {
+          setStatusre2("Yes");
+        }
 
         //3
         setDate3(response.data.activity[2].time);
         setParking3(response.data.activity[2].parkingZone);
+        if (response.data.activity[2].parkingZone) {
+          setStatusre3("Yes");
+        }
       }
 
       // let date = new Date().toDateString();
@@ -61,9 +73,6 @@ export default function Header() {
       settokens(response.data.tokens);
       setrewardedtokens(response.data.rewardedBalance);
       console.log("RESPONSE==========", response);
-      if (response) {
-        setStatusre("Yes");
-      }
     } catch (error) {
       console.log(error);
     }
@@ -303,17 +312,17 @@ export default function Header() {
                     <tr>
                       <td>{date1}</td>
                       <td>{parking1}</td>
-                      <td>{statusre}</td>
+                      <td>{statusre1}</td>
                     </tr>
                     <tr>
                       <td>{date2}</td>
                       <td>{parking2}</td>
-                      <td>{statusre}</td>
+                      <td>{statusre2}</td>
                     </tr>
                     <tr>
                       <td>{date3}</td>
                       <td>{parking3}</td>
-                      <td>{statusre}</td>
+                      <td>{statusre3}</td>
                     </tr>
 
                     {/* <tr>

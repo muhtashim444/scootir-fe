@@ -2,6 +2,7 @@ import React from "react";
 import css from "./style2.css";
 import axios from "axios";
 import { NavLink, Redirect } from "react-router-dom";
+import ReactJsAlert from "reactjs-alert";
 
 export default function Login() {
   const [email, setemail] = React.useState("");
@@ -27,6 +28,8 @@ export default function Login() {
         localStorage.setItem("email", email);
         console.log("email stored");
         setloggedIn(true);
+      } else {
+        setOpen(true);
       }
 
       // let response = await fetch(`/wallet`, {
@@ -107,6 +110,13 @@ export default function Login() {
           </a>
         </div> */}
       </div>
+      <ReactJsAlert
+        type="error" // success, warning, error, info
+        title="Login Failed."
+        status={open}
+        quote="Invalid Credentials"
+        Close={() => setOpen(false)}
+      />
     </section>
   );
 }
