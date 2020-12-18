@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 import axios from "axios";
 import ReactJsAlert from "reactjs-alert";
-const SERVER_DOMAIN = "http://localhost:5000";
+const SERVER_DOMAIN = "https://sccotir-backend.herokuapp.com";
 // const SERVER_DOMAIN = "https://e-scootir-backend.herokuapp.com";
 
 export default function Header() {

@@ -1,6 +1,6 @@
 import React from "react";
 import ReactJsAlert from "reactjs-alert";
-const SERVER_DOMAIN = "http://localhost:5000";
+const SERVER_DOMAIN = "https://sccotir-backend.herokuapp.com";
 
 export default function ParkingZones() {
   const [open, setOpen] = React.useState(false);
