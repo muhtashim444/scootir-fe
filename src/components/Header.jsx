@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 import axios from "axios";
 import ReactJsAlert from "reactjs-alert";
+const SERVER_DOMAIN = "http://localhost:5000";
+// const SERVER_DOMAIN = "https://e-scootir-backend.herokuapp.com";
 
 export default function Header() {
   const [email, setemail] = React.useState("");
@@ -26,39 +28,38 @@ export default function Header() {
 
       console.log("==============", myemail);
 
-      let response = await axios.post(
-        "https://e-scootir-backend.herokuapp.com/wallet",
-        {
+      if (myemail) {
+        let response = await axios.post(`${SERVER_DOMAIN}/wallet`, {
           email: localStorage.getItem("email"),
-        }
-      );
+        });
 
-      setethers(response.data.balance);
-      settokens(response.data.tokens);
-      setrewardedtokens(response.data.rewardedBalance);
-      console.log("RESPONSE==========", response);
+        setethers(response.data.balance);
+        settokens(response.data.tokens);
+        setrewardedtokens(response.data.rewardedBalance);
+        console.log("RESPONSE==========", response);
 
-      if (response.data.activity.length != 0) {
-        //1
+        if (response.data.activity.length != 0) {
+          //1
 
-        setDate1(response.data.activity[0].time);
-        setParking1(response.data.activity[0].parkingZone);
-        if (response.data.activity[0].parkingZone) {
-          setStatusre1("Yes");
-        }
+          setDate1(response.data.activity[0].time);
+          setParking1(response.data.activity[0].parkingZone);
+          if (response.data.activity[0].parkingZone) {
+            setStatusre1(response.data.activity[0].reward);
+          }
 
-        //2
-        setDate2(response.data.activity[1].time);
-        setParking2(response.data.activity[1].parkingZone);
-        if (response.data.activity[1].parkingZone) {
-          setStatusre2("Yes");
-        }
+          //2
+          setDate2(response.data.activity[1].time);
+          setParking2(response.data.activity[1].parkingZone);
+          if (response.data.activity[1].parkingZone) {
+            setStatusre2(response.data.activity[1].reward);
+          }
 
-        //3
-        setDate3(response.data.activity[2].time);
-        setParking3(response.data.activity[2].parkingZone);
-        if (response.data.activity[2].parkingZone) {
-          setStatusre3("Yes");
+          //3
+          setDate3(response.data.activity[2].time);
+          setParking3(response.data.activity[2].parkingZone);
+          if (response.data.activity[2].parkingZone) {
+            setStatusre3(response.data.activity[2].reward);
+          }
         }
       }
 
@@ -81,33 +82,35 @@ export default function Header() {
 
   const buyMore = async () => {
     try {
-      let response = await fetch(
-        `https://e-scootir-backend.herokuapp.com/buymore`,
-        {
+      let myemail = localStorage.getItem("email");
+      if (myemail) {
+        let response = await fetch(`${SERVER_DOMAIN}/buymore`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            email: localStorage.getItem("email"),
+            email: myemail,
           }),
-        }
-      );
+        });
+
+        let ress = await response.json();
+        // console.log("BUYMORE==========", await response.json());
+        // console.log("BUYMORE==========", await response.json());
+
+        setethers(ress.balance);
+        settokens(ress.tokens);
+        setrewardedtokens(ress.rewardedBalance);
+      }
 
       // let email = localStorage.getItem("email");
 
       // let response = await fetch(`https://sccotir-backend.herokuapp.com/wallet`, {
       //   method: "GET",
       // });
-      let ress = await response.json();
-      // console.log("BUYMORE==========", await response.json());
-      // console.log("BUYMORE==========", await response.json());
 
-      setethers(ress.balance);
-      settokens(ress.tokens);
-      setrewardedtokens(ress.rewardedBalance);
       // let response = await axios.get("https://sccotir-backend.herokuapp.com/wallet", {
       //   email: email,
       // });
-      console.log("RESPONSE==========", await response.json());
+      // console.log("RESPONSE==========", await response.json());
 
       // axios
       //   .post(`http://localhost:3001https://sccotir-backend.herokuapp.com/login`, { email: email, password: pwd })

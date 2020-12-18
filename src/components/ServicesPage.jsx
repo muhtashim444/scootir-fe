@@ -1,11 +1,13 @@
 import React from "react";
 import ReactJsAlert from "reactjs-alert";
+const SERVER_DOMAIN = "http://localhost:5000";
 
 export default function ServicesPage() {
   const [open, setOpen] = React.useState(false);
   const [open2, setOpen2] = React.useState(false);
   const [open3, setOpen3] = React.useState(false);
   const [open4, setOpen4] = React.useState(false);
+  // const [reward, setreward] = React.useState(false);
 
   const parkScootir = async () => {
     try {
@@ -14,31 +16,15 @@ export default function ServicesPage() {
         setOpen2(true);
         return;
       } else {
-        let response = await fetch(
-          `https://e-scootir-backend.herokuapp.com/reward`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              email: localStorage.getItem("email"),
-            }),
-          }
-        );
-        // if (response.status == 200) {
-        //   console.log("RECEIVED EMAIL");
-        //   localStorage.setItem("email", email);
-        //   console.log("email stored");
-        //   setloggedIn(true);
-        // }
+        let response = await fetch(`${SERVER_DOMAIN}/reward`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: localStorage.getItem("email"),
+            noReward: false,
+          }),
+        });
 
-        // let response = await fetch(`/wallet`, {
-        //   method: "GET",
-        // });
-
-        // let response = await axios.get("/wallet", {
-        //   email: email,
-        // });
-        // let rssss = await response.json();
         if (response.status == 200) {
           setOpen(true);
           return;
@@ -46,15 +32,34 @@ export default function ServicesPage() {
         setOpen4(true);
 
         console.log("RESPONSE==========", await response.json());
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const parkScootirNo = async () => {
+    try {
+      let myemail = await localStorage.getItem("email");
+      if (!myemail) {
+        setOpen2(true);
+        return;
+      } else {
+        let response = await fetch(`${SERVER_DOMAIN}/reward`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: localStorage.getItem("email"),
+            noReward: true,
+          }),
+        });
 
-        // axios
-        //   .post(`http://localhost:3001/login`, { email: email, password: pwd })
-        //   .then((res) => {
-        //     console.log(res);
-        //     console.log(res.data);
-        //   });
+        if (response.status == 200) {
+          setOpen3(true);
+          return;
+        }
+        setOpen4(true);
 
-        // console.log("RESPONSE=====", response);
+        console.log("RESPONSE==========", await response.json());
       }
     } catch (error) {
       console.log(error);
@@ -88,7 +93,7 @@ export default function ServicesPage() {
                   alt="A generic square placeholder image with rounded corners in a figure."
                 />
                 <figcaption class="figure-caption text-center">
-                  Zone 1
+                  Parking zone
                 </figcaption>
               </figure>
             </a>
@@ -113,7 +118,7 @@ export default function ServicesPage() {
                   alt="A generic square placeholder image with rounded corners in a figure."
                 />
                 <figcaption class="figure-caption text-center">
-                  Zone 2
+                  Parking zone
                 </figcaption>
               </figure>
             </a>
@@ -138,7 +143,7 @@ export default function ServicesPage() {
                   alt="A generic square placeholder image with rounded corners in a figure."
                 />
                 <figcaption class="figure-caption text-center">
-                  Zone 3
+                  Parking zone
                 </figcaption>
               </figure>
             </a>
@@ -163,7 +168,7 @@ export default function ServicesPage() {
                   alt="A generic square placeholder image with rounded corners in a figure."
                 />
                 <figcaption class="figure-caption text-center">
-                  Zone 4
+                  Parking zone
                 </figcaption>
               </figure>
             </a>
@@ -173,7 +178,7 @@ export default function ServicesPage() {
             class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4"
             data-aos="zoom-in"
             data-aos-delay="200"
-            onClick={() => setOpen3(true)}
+            onClick={parkScootirNo}
           >
             <a
               href="#"
@@ -183,12 +188,12 @@ export default function ServicesPage() {
             >
               <figure class="figure">
                 <img
-                  src="assets/img/wisam/parkingzone5.jpg"
+                  src="assets/img/wisam/parkingzone1.jpg"
                   class="figure-img img-fluid rounded Pkzone"
                   alt="A generic square placeholder image with rounded corners in a figure."
                 />
                 <figcaption class="figure-caption text-center">
-                  Zone 5
+                  No parking zone
                 </figcaption>
               </figure>
             </a>
@@ -198,7 +203,7 @@ export default function ServicesPage() {
             class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4"
             data-aos="zoom-in"
             data-aos-delay="300"
-            onClick={() => setOpen3(true)}
+            onClick={parkScootirNo}
           >
             <a
               href="#"
@@ -213,7 +218,7 @@ export default function ServicesPage() {
                   alt="A generic square placeholder image with rounded corners in a figure."
                 />
                 <figcaption class="figure-caption text-center">
-                  Zone 6
+                  No parking zone
                 </figcaption>
               </figure>
             </a>
@@ -237,17 +242,17 @@ export default function ServicesPage() {
 
       <ReactJsAlert
         type="error" // success, warning, error, info
-        title="Can Not Park."
+        title="Parked Successfully With No Reward"
         status={open3}
-        quote="Please park in the parking zone"
+        quote="No reward is given to you as you are not parking in specified parking zones"
         Close={() => setOpen3(false)}
       />
 
       <ReactJsAlert
         type="error" // success, warning, error, info
-        title="Can Not Park."
+        title="Can not park,"
         status={open4}
-        quote="You are not renting any scootir"
+        quote="You are not renting any sootir"
         Close={() => setOpen4(false)}
       />
     </section>

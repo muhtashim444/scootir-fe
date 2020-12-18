@@ -1,9 +1,12 @@
 import React from "react";
 import ReactJsAlert from "reactjs-alert";
+const SERVER_DOMAIN = "http://localhost:5000";
 
 export default function ParkingZones() {
   const [open, setOpen] = React.useState(false);
   const [open2, setOpen2] = React.useState(false);
+  const [open3, setOpen3] = React.useState(false);
+  const [reward, setReward] = React.useState(false);
 
   const rentScooter = async () => {
     try {
@@ -12,20 +15,19 @@ export default function ParkingZones() {
         setOpen2(true);
         return;
       } else {
-        let response = await fetch(
-          `https://e-scootir-backend.herokuapp.com/rent`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              email: localStorage.getItem("email"),
-            }),
-          }
-        );
+        let response = await fetch(`${SERVER_DOMAIN}/rent`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: localStorage.getItem("email"),
+          }),
+        });
         let resss = await response.json();
         console.log("==================================", resss);
         if (response.status == 200) {
           setOpen(true);
+        } else if (response.status == 201) {
+          setOpen3(true);
         }
         // setethers(response.data.balance);
         // settokens(response.data.tokens);
@@ -334,6 +336,13 @@ export default function ParkingZones() {
         status={open2}
         quote="You can not rent this e-scootir"
         Close={() => setOpen2(false)}
+      />
+      <ReactJsAlert
+        type="error" // success, warning, error, info
+        title="Please Buy More Tokens."
+        status={open3}
+        quote="You can not rent this e-scootir"
+        Close={() => setOpen3(false)}
       />
     </section>
   );
